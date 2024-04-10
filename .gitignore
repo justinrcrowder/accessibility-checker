@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+backend/secret.py
+backend/__pycache__/__init__.cpython-311.pyc
+backend/__pycache__/secret.cpython-311.pyc
+backend/__pycache__/server.cpython-311.pyc
