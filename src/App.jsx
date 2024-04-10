@@ -2,18 +2,36 @@ import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 
+import axios from 'axios';
+
 function App() {
   const [url, setUrl] = useState('');
   const [latestSubmission, setLatestSubmission] = useState(null);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (url) {
-      const description = "This is a hardcoded description for the URL provided.";
-      setLatestSubmission({ url, description });
-      setUrl('');
+  
+  const getReport = async (url) => {
+    try {
+      let response = await axios.get('http://127.0.0.1:5000/report?url=' + url);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(error);
     }
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (url) {
+      try {
+        let report = await getReport(url);
+        let description = report['summary'];
+        setLatestSubmission({ url, description });
+        setUrl('');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
 
   return (
     <Container className="mt-5 align-content-center" style={{ maxWidth: "600px", border: "1px solid #ccc", margin: "20px", padding: "20px", borderRadius: "5px"
