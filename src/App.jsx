@@ -16,7 +16,8 @@ function App() {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 align-content-center" style={{ maxWidth: "600px", border: "1px solid #ccc", margin: "20px", padding: "20px", borderRadius: "5px"
+    }}>
       <h1>Accessibility Checker</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="urlInput">
@@ -29,7 +30,7 @@ function App() {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button style={{margin: ".5em"}} variant="primary" type="submit">
           Submit
         </Button>
       </Form>
